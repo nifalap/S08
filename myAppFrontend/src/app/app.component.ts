@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myAppFrontend';
+  constructor(public authService: AuthService, private router: Router) {}
+
+  logout() {
+    this.authService.removeToken();
+    this.router.navigate(['/login']);
+  }
 }

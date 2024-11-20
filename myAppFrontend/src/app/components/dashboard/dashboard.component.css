@@ -1,0 +1,60 @@
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.summary {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.reference {
+  font-style: italic;
+  color: #666;
+}
+
+.reference a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.reference a:hover {
+  text-decoration: underline;
+}
+
+.technical-stack ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.technical-stack li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.technical-stack li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+}

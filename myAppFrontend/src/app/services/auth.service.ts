@@ -11,23 +11,22 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  // Login function
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { username, password });
   }
 
-  // Store the token in local storage
-  storeToken(token: string): void {
-    localStorage.setItem('token', token);
-  }
-
-  // Get the token from local storage
+  // Get token from localStorage
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  // Clear the token (for logout)
-  clearToken(): void {
+  // Store token in localStorage
+  storeToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  // Remove token from localStorage
+  removeToken(): void {
     localStorage.removeItem('token');
   }
 }

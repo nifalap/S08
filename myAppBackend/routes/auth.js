@@ -40,4 +40,8 @@ router.get('/protected', authenticateToken, (req, res) => {
     res.json({ message: `Hello ${req.user.username}, you have access to this protected route!` });
 });
 
-module.exports = router;
+
+module.exports = {
+    authenticateToken,  // Export the middleware
+    router: router     // Export the router
+};
