@@ -15,19 +15,27 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Please enter both username and password';
+      return;
+    }
+
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
-        // Store the token in localStorage
+        // Store the token
         this.authService.storeToken(response.token);
-
-        // Log the token to verify successful login
-        console.log('Login successful, token received:', response.token);
-
-        // Redirect to the dashboard
+        // Clear any error messages
+        this.errorMessage = '';
+        // Redirect to dashboard
         this.router.navigate(['/dashboard']);
       },
       (error) => {
-        this.errorMessage = 'Invalid username or password';
+        // Show specific error message based on error
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid username or password';
+        } else {
+          this.errorMessage = 'An error occurred. Please try again.';
+        }
       }
     );
   }
