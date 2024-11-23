@@ -21,14 +21,17 @@ const authenticateToken = (req, res, next) => {
     }
 };
 
-// POST /login route for authentication
+// routes/auth.js
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    // Simple check for hardcoded credentials
-    if (username === 'saad' && password === 'saad') {
-        // Generate a JWT token
-        const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Convert inputs to lowercase for case-insensitive comparison
+    const lowercaseUsername = username.toLowerCase();
+    const lowercasePassword = password.toLowerCase();
+
+    // Compare with lowercase 'saad'
+    if (lowercaseUsername === 'saad' && lowercasePassword === 'saad') {
+        const token = jwt.sign({ username: lowercaseUsername }, process.env.JWT_SECRET, { expiresIn: '1h' });
         return res.json({ token });
     } else {
         return res.status(401).json({ message: 'Invalid credentials' });
